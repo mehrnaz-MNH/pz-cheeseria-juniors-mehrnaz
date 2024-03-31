@@ -22,7 +22,7 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
     setDialogOpen(false);
   }
   return (
-    <Wrapper>
+    <Wrapper onClick={handleOpen} >
     <img src={item.image} alt={item.title} />
     <div>
       <h3>{item.title}</h3>
@@ -30,7 +30,20 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
     </div>
     <Button
       onClick={() => handleAddToCart(item)}
-      data-cy={`add-to-cart-${item.id}`}>Add to cart</Button>
+      data-cy={`add-to-cart-${item.id}`}>Add to cart</Button> 
+
+    <Dialog open={openDialog} onClose={handleClose}>
+      <DialogTitle>{item.title}</DialogTitle>
+      <DialogContent>
+          
+          <p>About : {item.description} </p>
+          <p>Price : ${item.price} </p>
+      </DialogContent>
+     
+          <Button onClick={handleClose}>Cancel</Button>
+  
+
+    </Dialog>
   </Wrapper>
   )
 };

@@ -1,9 +1,10 @@
-import express = require('express');
+import * as express from 'express';
 import router from './routes';
 
 const app = express();
 
 app.use(express.static('public'));
+
 app.use(router);
 
 const port = process.env.PORT || 3000;

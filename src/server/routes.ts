@@ -39,5 +39,11 @@ router.post('/api/purchases', (req, res, next) => {
     });
 });
 
+router.get('/api/recentPurchases', (req, res, next) => {
+
+    res.json(purchases);
+});
+
+
 
 export default router;

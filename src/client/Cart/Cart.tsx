@@ -15,13 +15,34 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
     items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
   
 
-  const handlePurchase = () =>{
-
-   
-    console.log(JSON.stringify(cartItems))
-    
-
-  }
+    const handlePurchase = () =>{
+      
+      
+      fetch('/api/purchases', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cartItems)
+      })
+      .then(response => {
+        if (response.ok) {
+          
+          console.log('Purchase successful');
+          console.log(response)
+          
+          
+        } else {
+          
+          console.error('Purchase failed');
+          
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        
+      });
+      
+  
+    }
 
   return (
     <Wrapper>
@@ -36,7 +57,9 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
         />
       ))}
       <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
-      <Button onClick={handlePurchase} >Purchase</Button>
+      {cartItems.length !== 0 ? 
+       <Button onClick={handlePurchase}>Purchase</Button>
+        : null}
     </Wrapper>
   );
 };

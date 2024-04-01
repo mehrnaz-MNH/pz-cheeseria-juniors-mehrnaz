@@ -125,9 +125,11 @@ const App = () => {
       </StyledAppBar>
 
       <Drawer anchor='left' open={cartPOpen} onClose={() => setPCartOpen(false)}>
-        <PurchasedCart
-          PurchasedItems={purchaseData ?? []}
-        />
+          {purchaseIsLoading ? ( // Use ternary operator to conditionally render based on isLoading
+              <LinearProgress />
+             ) : (
+              <PurchasedCart PurchasedItems={purchaseData ?? []} />
+              )}
       </Drawer>
 
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>

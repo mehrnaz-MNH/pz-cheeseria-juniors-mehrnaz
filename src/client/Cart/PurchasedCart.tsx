@@ -2,10 +2,10 @@ import { Wrapper } from './PurchasedCart.styles';
 import { CartItemType } from '../App';
 import React from 'react';
 import PurchasedItem from './PurchasedItem/PurchasedItem'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 type Props = {
   PurchasedItems: CartItemType[];
-
 };
 
 const PurchasedCart: React.FC<Props> = ({ PurchasedItems }) => {

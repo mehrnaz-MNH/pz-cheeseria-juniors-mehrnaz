@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 // Components
 import Item from './Cart/Item/Item';
 import Cart from './Cart/Cart';
+import PurchasedCart from './Cart/PurchasedCart';
 import Drawer from '@material-ui/core/Drawer';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from '@material-ui/core/Grid';
@@ -27,13 +28,25 @@ export type CartItemType = {
 const getCheeses = async (): Promise<CartItemType[]> =>
   await (await fetch(`api/cheeses`)).json();
 
+const getPurchases = async (): Promise<CartItemType[]> =>
+  await (await fetch(`api/recentPurchases`)).json();
+
+
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
+  const [cartPOpen, setPCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
     'cheeses',
     getCheeses
   );
+  
+  const { data: purchaseData, isLoading: purchaseIsLoading, error: purchaseError } = useQuery<CartItemType[]>(
+    'purchases',
+    getPurchases
+  );
+
+
   console.log(data);
 
   const getTotalItems = (items: CartItemType[]) =>
@@ -83,7 +96,7 @@ const App = () => {
             justify="space-between"
             alignItems="center"
           >
-            <StyledButton>
+            <StyledButton onClick={() => setPCartOpen(true)} >
               <RestoreIcon />
               <Typography variant="subtitle2">
                 Recent Purchases
@@ -110,6 +123,12 @@ const App = () => {
           </Grid>
         </Toolbar>
       </StyledAppBar>
+
+      <Drawer anchor='left' open={cartPOpen} onClose={() => setPCartOpen(false)}>
+        <PurchasedCart
+          PurchasedItems={purchaseData ?? []}
+        />
+      </Drawer>
 
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
         <Cart

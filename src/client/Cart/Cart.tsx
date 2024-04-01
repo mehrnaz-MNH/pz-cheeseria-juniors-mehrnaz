@@ -16,8 +16,7 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
   
 
     const handlePurchase = () =>{
-      
-      
+     
       fetch('/api/purchases', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -27,9 +26,7 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
         if (response.ok) {
           
           console.log('Purchase successful');
-          console.log(response)
-          
-          
+              
         } else {
           
           console.error('Purchase failed');

@@ -33,11 +33,15 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
       <DialogTitle>{item.title}</DialogTitle>
       <DialogContent>
           
-          <p>About : {item.description} </p>
-          <p>Price : ${item.price} </p>
+          <p>About : </p>
+          <p>{item.description} </p>
+          <p>Category : </p>
+          <p>{item.category} </p>
+          <p>Price : </p>
+          <p>${item.price} </p>
       </DialogContent>
       <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+          <Button onClick={() => setDialogOpen(false)}>Close</Button>
       </DialogActions>
 
     </Dialog>

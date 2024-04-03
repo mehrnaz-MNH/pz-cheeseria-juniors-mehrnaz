@@ -41,7 +41,7 @@ const App = () => {
     getCheeses
   );
   
-  const { data: purchaseData, isLoading: purchaseIsLoading, error: purchaseError } = useQuery<CartItemType[]>(
+  const { data: purchaseData } = useQuery<CartItemType[]>(
     'purchases',
     getPurchases
   );
@@ -129,11 +129,9 @@ const App = () => {
       </StyledAppBar>
 
       <Drawer anchor='left' open={cartPOpen} onClose={() => setPCartOpen(false)}>
-          {purchaseIsLoading ? ( // Use ternary operator to conditionally render based on isLoading
-              <LinearProgress />
-             ) : (
+  
               <PurchasedCart PurchasedItems={purchaseData ?? []} />
-              )}
+           
       </Drawer>
 
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>

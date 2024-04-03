@@ -13,13 +13,13 @@ context('Cart Actions', () => {
     cy.get('[data-cy=badge-count]').should('have.text', '2');
 
     // Click on the Purchase button
-    cy.contains('Purchase').click();
+    cy.get('[data-cy=purchase-button]').click();
 
     // Verify that the purchase was successful
-    cy.contains('Purchase successful').should('be.visible');
+    cy.get('[data-cy=purchase-alert]').should('be.visible');
 
     // Verify that the cart is empty after the purchase
-    cy.contains('No items in cart.').should('be.visible');
+    cy.get('[data-cy=cart-clear]').should('be.visible');
 
   })
 

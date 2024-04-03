@@ -44,9 +44,10 @@ const App = () => {
     getCheeses
   );
 
-  const { data: purchaseData, isLoading: purchaseLoading } = useQuery<
-    CartItemType[]
-  >("purchases", getPurchases);
+  const { data: purchaseData } = useQuery<CartItemType[]>(
+    "purchases",
+    getPurchases
+  );
 
   console.log(data);
   console.log(purchaseData);
@@ -88,7 +89,7 @@ const App = () => {
     setCartItems([]); // Clear the cart items state
   };
 
-  if (isLoading || purchaseLoading) return <LinearProgress />;
+  if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>;
 
   return (

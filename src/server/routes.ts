@@ -12,9 +12,6 @@ router.get('/api/cheeses', (req, res, next) => {
 });
 
 
-// global array to save data , 
-//I may decide to add a seperate jason file later to add data there and
-// clean after every closing the tab
 const purchases: any[] = []; 
 
 router.post('/api/purchases', (req, res, next) => {

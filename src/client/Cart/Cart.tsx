@@ -37,6 +37,7 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart , onSucces
         } else {
           
           setPurchaseState(false)
+          setAlertOpen(true)
           console.error('Purchase failed');
           
         }
@@ -77,7 +78,7 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart , onSucces
         open={alertOpen}
         autoHideDuration={6000}
         onClose={handleCloseAlert}
-        message="Purchase successful" // Alert message
+        message={purchaseState ? "Purchase successful" : "Purchase failed"}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         data-cy="purchase-alert"
       />

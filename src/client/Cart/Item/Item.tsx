@@ -4,7 +4,7 @@ import { CartItemType } from '../../App';
 // Styles
 import { Wrapper } from './Item.styles';
 import React , {useState} from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core'; //imports for dialog
+import { Dialog, DialogTitle, DialogContent, DialogActions, Chip } from '@material-ui/core'; //imports for dialog
 
 type Props = {
   item: CartItemType;
@@ -13,17 +13,13 @@ type Props = {
 
 const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
   const [openDialog , setDialogOpen] = useState(false);
-  // handle opening
-  const handleOpen = () =>{
-    setDialogOpen(true);
-  }
- 
   return (
-    <Wrapper  >
-    <img src={item.image} alt={item.title} />
-    <div onClick={handleOpen} >
-      <h3>{item.title}</h3>
-      <h3>${item.price}</h3>
+    <Wrapper   >
+    <img src={item.image} alt={item.title}  />
+    <div onClick={() => setDialogOpen(true)} >
+        <h3>{item.title}</h3>
+        <h3>${item.price}</h3>
+    
     </div>
     <Button
       onClick={() => handleAddToCart(item)}
@@ -32,7 +28,6 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
     <Dialog open={openDialog} >
       <DialogTitle>{item.title}</DialogTitle>
       <DialogContent>
-          
           <p>About : </p>
           <p>{item.description} </p>
           <p>Category : </p>

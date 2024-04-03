@@ -82,6 +82,10 @@ const App = () => {
     );
   };
 
+  const handleSuccessPurchase = () => {
+    setCartItems([]); // Clear the cart items state
+  };
+
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>;
 
@@ -137,6 +141,7 @@ const App = () => {
           cartItems={cartItems}
           addToCart={handleAddToCart}
           removeFromCart={handleRemoveFromCart}
+          onSuccessPurchase={handleSuccessPurchase}
         />
       </Drawer>
 

@@ -44,7 +44,7 @@ const App = () => {
     getCheeses
   );
 
-  const { data: purchaseData , refetch } = useQuery<CartItemType[]>(
+  const { data: purchaseData, refetch } = useQuery<CartItemType[]>(
     "purchases",
     getPurchases
   );
@@ -89,10 +89,10 @@ const App = () => {
     setCartItems([]); // Clear the cart items state
   };
 
-  const HandleOpeningPurchaseCart = () =>{
+  const HandleOpeningPurchaseCart = () => {
     refetch();
     setPCartOpen(true);
-  }
+  };
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>;
@@ -107,8 +107,11 @@ const App = () => {
             justify="space-between"
             alignItems="center"
           >
-            <StyledButton onClick={HandleOpeningPurchaseCart}>
-              <RestoreIcon data-cy="recent-purchase"/>
+            <StyledButton
+              onClick={HandleOpeningPurchaseCart}
+              data-cy="recent-purchase"
+            >
+              <RestoreIcon />
               <Typography variant="subtitle2">Recent Purchases</Typography>
             </StyledButton>
 
@@ -135,7 +138,6 @@ const App = () => {
         anchor="left"
         open={cartPOpen}
         onClose={() => setPCartOpen(false)}
-        
       >
         <PurchasedCart PurchasedItems={purchaseData ?? []} />
       </Drawer>

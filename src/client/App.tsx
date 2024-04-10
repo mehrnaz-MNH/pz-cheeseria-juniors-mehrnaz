@@ -108,7 +108,7 @@ const App = () => {
             alignItems="center"
           >
             <StyledButton onClick={HandleOpeningPurchaseCart}>
-              <RestoreIcon />
+              <RestoreIcon data-cy="recent-purchase"/>
               <Typography variant="subtitle2">Recent Purchases</Typography>
             </StyledButton>
 

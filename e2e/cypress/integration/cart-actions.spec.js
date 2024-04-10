@@ -24,6 +24,12 @@ context('Cart Actions', () => {
     // Verify that the cart is empty after the purchase
     cy.get('[data-cy=cart-clear]').should('be.visible');
 
+    // click on the recent purchase cart 
+    cy.get('[data-cy=recent-purchase]').click();
+
+    // check if items are there 
+    cy.get('[data-cy=cart-has-item]').should('have.text', 'You have 2 items in your cart.');
+
   })
 
 })

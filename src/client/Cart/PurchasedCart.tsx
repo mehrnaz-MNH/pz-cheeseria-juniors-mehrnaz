@@ -15,12 +15,16 @@ const PurchasedCart: React.FC<Props> = ({ PurchasedItems }) => {
     <Wrapper>
       <h2>Your Recent Purchases</h2>
       {PurchasedItems.length === 0 ? <p>No item recently purchased.</p> : null}
+      {PurchasedItems.length !== 0 ? (
+        <p data-cy="cart-has-item">You have {PurchasedItems.length} items in your cart.</p>
+      ) : null}
       {PurchasedItems.map(item => (
         <PurchasedItem
           key={item.id}
           item={item}
         />
       ))}
+
       <h2>Total: ${calculateTotal(PurchasedItems).toFixed(2)}</h2>
     </Wrapper>
   );
